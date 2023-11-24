@@ -1,6 +1,5 @@
 package travel.project.springboot.travel.dto;
 
-
 import lombok.Getter;
 import travel.project.springboot.travel.domain.entity.Travel;
 
@@ -10,7 +9,6 @@ public class TravelLocationResponse {
     private final double latitude;
     private final double longitude;
     private final String address;
-
 
     public TravelLocationResponse(Travel travel) {
         this.title = travel.getTravelCommonData().getTitle();

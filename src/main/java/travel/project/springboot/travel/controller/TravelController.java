@@ -41,5 +41,4 @@ public class TravelController {
         return ResponseEntity.ok()
                 .body(locationInfo);
     }
-
 }
