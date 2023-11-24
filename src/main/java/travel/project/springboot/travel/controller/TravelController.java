@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import travel.project.springboot.travel.domain.entity.Travel;
+import travel.project.springboot.travel.dto.TravelLocationResponse;
 import travel.project.springboot.travel.dto.TravelResponse;
 import travel.project.springboot.travel.service.TravelService;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -27,4 +30,16 @@ public class TravelController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    @GetMapping("/api/travel/location")
+    public ResponseEntity<List<TravelLocationResponse>> findAllTravelLocation() {
+        List<TravelLocationResponse> locationInfo = travelService.rocationFindAll()
+                .stream()
+                .map(TravelLocationResponse::new)
+                .toList();
+
+        return ResponseEntity.ok()
+                .body(locationInfo);
+    }
+
 }

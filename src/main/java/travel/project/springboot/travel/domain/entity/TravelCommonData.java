@@ -11,7 +11,7 @@ public class TravelCommonData {
     private double latitude;
     private double longitude;
     private String address;
-    private int post_code;
+    private String post_code;
     private String out_line;
     private String detail_info;
 }
