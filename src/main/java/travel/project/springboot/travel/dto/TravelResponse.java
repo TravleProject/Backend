@@ -14,12 +14,12 @@ public class TravelResponse {
     private final String detail_info;
 
     public TravelResponse(Travel travel) {
-        this.title = travel.getTitle();
-        this.latitude = travel.getLatitude();
-        this.longitude = travel.getLongitude();
-        this.address = travel.getAddress();
-        this.post_code = travel.getPost_code();
-        this.out_line = travel.getOut_line();
-        this.detail_info = travel.getDetail_info();
+        this.title = travel.getTravelCommonData().getTitle();
+        this.latitude = travel.getTravelCommonData().getLatitude();
+        this.longitude = travel.getTravelCommonData().getLongitude();
+        this.address = travel.getTravelCommonData().getAddress();
+        this.post_code = travel.getTravelCommonData().getPost_code();
+        this.out_line = travel.getTravelCommonData().getOut_line();
+        this.detail_info = travel.getTravelCommonData().getDetail_info();
     }
 }
