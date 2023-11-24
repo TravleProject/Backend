@@ -1,12 +1,11 @@
 package travel.project.springboot.travel.domain.entity;
 
-
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
 
 @Embeddable
 @Getter
-public class TravelCommonData {
+public class CommonData {
     private String title;
     private double latitude;
     private double longitude;

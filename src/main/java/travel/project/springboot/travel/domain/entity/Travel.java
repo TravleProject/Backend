@@ -18,6 +18,6 @@ public class Travel {
     private long id;
 
     @Embedded
-    private TravelCommonData travelCommonData;
+    private CommonData travelCommonData;
 
 }

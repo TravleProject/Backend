@@ -31,7 +31,7 @@ public class TravelController {
         }
     }
 
-    @GetMapping("/api/travel/location")
+    @GetMapping("/api/travels/location")
     public ResponseEntity<List<TravelLocationResponse>> findAllTravelLocation() {
         List<TravelLocationResponse> locationInfo = travelService.rocationFindAll()
                 .stream()
