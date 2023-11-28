@@ -1,17 +1,17 @@
-package travel.project.springboot.travel.domain.entity;
+package travel.project.springboot.travel.Leports.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import travel.project.springboot.common.CommonData;
+import travel.project.springboot.common.entity.CommonData;
 
 @Entity // 엔티티로 지정
 @Getter
 // 접근제어자를 명시적으로 선언, default public
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "travel")
-public class Travel {
+@Table(name = "leports")
+public class Leports {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +19,6 @@ public class Travel {
     private long id;
 
     @Embedded
-    private CommonData travelCommonData;
+    private CommonData commonData;
 
 }

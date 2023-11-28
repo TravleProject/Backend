@@ -1,4 +1,4 @@
-package travel.project.springboot.common;
+package travel.project.springboot.common.entity;
 
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
