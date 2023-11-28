@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import travel.project.springboot.common.CommonData;
 
 @Entity // 엔티티로 지정
 @Getter

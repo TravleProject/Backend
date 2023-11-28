@@ -33,7 +33,7 @@ public class TravelController {
 
     @GetMapping("/api/travels/location")
     public ResponseEntity<List<TravelLocationResponse>> findAllTravelLocation() {
-        List<TravelLocationResponse> locationInfo = travelService.rocationFindAll()
+        List<TravelLocationResponse> locationInfo = travelService.findAll()
                 .stream()
                 .map(TravelLocationResponse::new)
                 .toList();

@@ -1,7 +1,7 @@
 package travel.project.springboot.travel.dto;
 
 import lombok.Getter;
-import travel.project.springboot.travel.domain.entity.CommonData;
+import travel.project.springboot.common.CommonData;
 import travel.project.springboot.travel.domain.entity.Travel;
 
 @Getter
