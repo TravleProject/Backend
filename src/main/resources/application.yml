@@ -4,3 +4,10 @@ spring:
     url: jdbc:mysql://dv-travel.cuupm4va6ex5.ap-northeast-2.rds.amazonaws.com:3306/travel_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: admin
     password: ${MYSQL_SECRET}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
