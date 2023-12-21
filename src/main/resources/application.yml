@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://dv-travel.cuupm4va6ex5.ap-northeast-2.rds.amazonaws.com:3306/travel_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: admin
+    password: ${MYSQL_SECRET}
