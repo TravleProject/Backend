@@ -33,12 +33,18 @@ public class ThemeController {
 
     @GetMapping
     public ResponseEntity<List<ThemeResponse>> findAll() {
-        List<ThemeResponse> locationInfo = themeService.findAll()
-                .stream()
-                .map(ThemeResponse::new)
-                .toList();
+        try {
+            List<ThemeResponse> locationInfo = themeService.findAll()
+                    .stream()
+                    .map(ThemeResponse::new)
+                    .toList();
 
-        return ResponseEntity.ok()
-                .body(locationInfo);
+            return ResponseEntity.ok().body(locationInfo);
+        } catch (Exception e) {
+            // 예외 로깅
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
+
 }
