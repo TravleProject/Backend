@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import travel.project.springboot.global.response.MakeResponse;
+import travel.project.springboot.global.response.ResponseMessage;
 import travel.project.springboot.travel.Leports.domain.entity.Leports;
 import travel.project.springboot.travel.Leports.dto.LeportsResponse;
 import travel.project.springboot.travel.Leports.service.LeportsService;
@@ -18,30 +20,34 @@ public class LeportsController {
 
     private final LeportsService leportsService;
 
-    public LeportsController(LeportsService travelService) {
-        this.leportsService = travelService;
+    public LeportsController(LeportsService leportsService) {
+        this.leportsService = leportsService;
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<LeportsResponse> findId(@PathVariable long id) {
+    public ResponseEntity<ResponseMessage<Object>> findId(@PathVariable long id) {
         try {
             Leports leports = leportsService.findById(id);
-            return ResponseEntity.ok().body(new LeportsResponse(leports));
+            LeportsResponse response = new LeportsResponse(leports);
+            return MakeResponse.getResponseMessage(HttpStatus.OK, "Success", response);
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.notFound().build();
+            return MakeResponse.getResponseMessage(HttpStatus.NOT_FOUND, "Leports not found");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return MakeResponse.getResponseMessage(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error");
         }
     }
 
     @GetMapping
-    public ResponseEntity<List<LeportsResponse>> findAll() {
-        List<LeportsResponse> locationInfo = leportsService.findAll()
-                .stream()
-                .map(LeportsResponse::new)
-                .toList();
+    public ResponseEntity<ResponseMessage<Object>> findAll() {
+        try {
+            List<LeportsResponse> leportsResponses = leportsService.findAll()
+                    .stream()
+                    .map(LeportsResponse::new)
+                    .toList();
 
-        return ResponseEntity.ok()
-                .body(locationInfo);
+            return MakeResponse.getResponseMessage(HttpStatus.OK, "Success", leportsResponses);
+        } catch (Exception e) {
+            return MakeResponse.getResponseMessage(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error");
+        }
     }
 }
