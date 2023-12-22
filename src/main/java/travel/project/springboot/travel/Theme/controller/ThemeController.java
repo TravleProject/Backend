@@ -3,6 +3,8 @@ package travel.project.springboot.travel.Theme.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import travel.project.springboot.global.response.MakeResponse;
+import travel.project.springboot.global.response.ResponseMessage;
 import travel.project.springboot.travel.Theme.domain.entity.Theme;
 import travel.project.springboot.travel.Theme.dto.ThemeResponse;
 import travel.project.springboot.travel.Theme.service.ThemeService;
@@ -15,36 +17,36 @@ public class ThemeController {
 
     private final ThemeService themeService;
 
-    public ThemeController(ThemeService travelService) {
-        this.themeService = travelService;
+    public ThemeController(ThemeService themeService) {
+        this.themeService = themeService;
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ThemeResponse> findId(@PathVariable long id) {
+    public ResponseEntity<ResponseMessage<Object>> findId(@PathVariable long id) {
         try {
             Theme theme = themeService.findById(id);
-            return ResponseEntity.ok().body(new ThemeResponse(theme));
+            ThemeResponse response = new ThemeResponse(theme);
+            return MakeResponse.getResponseMessage(HttpStatus.OK, "Success", response);
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.notFound().build();
+            return MakeResponse.getResponseMessage(HttpStatus.NOT_FOUND, "Theme not found");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return MakeResponse.getResponseMessage(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error");
         }
     }
 
     @GetMapping
-    public ResponseEntity<List<ThemeResponse>> findAll() {
+    public ResponseEntity<ResponseMessage<Object>> findAll() {
         try {
-            List<ThemeResponse> locationInfo = themeService.findAll()
+            List<ThemeResponse> themeResponses = themeService.findAll()
                     .stream()
                     .map(ThemeResponse::new)
                     .toList();
 
-            return ResponseEntity.ok().body(locationInfo);
+            return MakeResponse.getResponseMessage(HttpStatus.OK, "Success", themeResponses);
         } catch (Exception e) {
-            // 예외 로깅
+            // Log the exception
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return MakeResponse.getResponseMessage(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error");
         }
     }
-
 }
