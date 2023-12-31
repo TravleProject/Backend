@@ -1,5 +1,7 @@
 package travel.project.springboot.travel.Leports.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +26,10 @@ public class LeportsController {
         this.leportsService = leportsService;
     }
 
+    @Operation(summary = "레포츠 카테고리 검색", description = "검색한 레포츠 정보를 반환")
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseMessage<Object>> findId(@PathVariable long id) {
+    public ResponseEntity<ResponseMessage<Object>> findId(@Parameter(example = "검색할 레포츠명")
+                                                              @PathVariable(value = "금어낚시터") int id) {
         try {
             Leports leports = leportsService.findById(id);
             LeportsResponse response = new LeportsResponse(leports);

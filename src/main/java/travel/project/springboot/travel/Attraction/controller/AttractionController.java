@@ -1,5 +1,7 @@
 package travel.project.springboot.travel.Attraction.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +23,10 @@ public class AttractionController {
         this.attractionService = attractionService;
     }
 
+    @Operation(summary = "관광지 카테고리 검색", description = "검색한 관광지 정보를 반환")
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseMessage<Object>> findId(@PathVariable long id) {
+    public ResponseEntity<ResponseMessage<Object>> findId(@Parameter(example = "검색할 관광지명")
+                                                              @PathVariable(value = "가덕산") long id) {
         try {
             Attraction attraction = attractionService.findById(id);
             AttractionResponse response = new AttractionResponse(attraction);

@@ -1,5 +1,7 @@
 package travel.project.springboot.travel.Theme.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +23,10 @@ public class ThemeController {
         this.themeService = themeService;
     }
 
+    @Operation(summary = "테마 카테고리 검색", description = "검색한 테마 정보를 반환")
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseMessage<Object>> findId(@PathVariable long id) {
+    public ResponseEntity<ResponseMessage<Object>> findId(@Parameter(example = "검색할 테마명")
+                                                              @PathVariable(value = "제주올레길") long id) {
         try {
             Theme theme = themeService.findById(id);
             ThemeResponse response = new ThemeResponse(theme);

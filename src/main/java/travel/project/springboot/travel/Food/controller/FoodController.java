@@ -1,5 +1,7 @@
 package travel.project.springboot.travel.Food.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +26,10 @@ public class FoodController {
         this.foodService = foodService;
     }
 
+    @Operation(summary = "음식점 카테고리 검색", description = "검색한 음식점 정보를 반환")
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseMessage<Object>> findId(@PathVariable long id) {
+    public ResponseEntity<ResponseMessage<Object>> findId(@Parameter(example = "검색할 음식점 상호명")
+                                                              @PathVariable(value = "니와") long id) {
         try {
             Food food = foodService.findById(id);
             FoodResponse response = new FoodResponse(food);
