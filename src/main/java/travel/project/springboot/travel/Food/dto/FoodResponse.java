@@ -14,8 +14,8 @@ public class FoodResponse {
     //private final String out_line;
     //private final String detail_info;
 
-    public FoodResponse(Food festival) {
-        CommonData commonData = festival.getCommonData();
+    public FoodResponse(Food food) {
+        CommonData commonData = food.getCommonData();
         this.title = commonData.getTitle();
         this.latitude = commonData.getLatitude();
         this.longitude = commonData.getLongitude();
