@@ -13,16 +13,22 @@ import travel.project.springboot.common.entity.CommonDataSpecifications;
 import travel.project.springboot.common.service.BaseService;
 import travel.project.springboot.global.response.MakeResponse;
 import travel.project.springboot.global.response.ResponseMessage;
+import travel.project.springboot.travel.Attraction.dto.AttractionAlllResponse;
 import travel.project.springboot.travel.Attraction.dto.AttractionResponse;
 import travel.project.springboot.travel.Attraction.service.AttractionService;
+import travel.project.springboot.travel.Festival.dto.FestivalAllResponse;
 import travel.project.springboot.travel.Festival.dto.FestivalResponse;
 import travel.project.springboot.travel.Festival.service.FestivalService;
+import travel.project.springboot.travel.Food.dto.FoodAllResponse;
 import travel.project.springboot.travel.Food.dto.FoodResponse;
 import travel.project.springboot.travel.Food.service.FoodService;
+import travel.project.springboot.travel.Leports.dto.LeportsAllResponse;
 import travel.project.springboot.travel.Leports.dto.LeportsResponse;
 import travel.project.springboot.travel.Leports.service.LeportsService;
+import travel.project.springboot.travel.Theme.dto.ThemeAllResponse;
 import travel.project.springboot.travel.Theme.dto.ThemeResponse;
 import travel.project.springboot.travel.Theme.service.ThemeService;
+import travel.project.springboot.travel.accommodation.dto.AccommodationAllResponse;
 import travel.project.springboot.travel.accommodation.dto.AccommodationResponse;
 import travel.project.springboot.travel.accommodation.service.AccommodationService;
 
@@ -107,22 +113,22 @@ public class TravelController {
 
         switch (category.toLowerCase()) {
             case "accommodation":
-                responses = findByTitle(accommodationService, title, AccommodationResponse::new);
+                responses = findByTitle(accommodationService, title, AccommodationAllResponse::new);
                 break;
             case "attraction":
-                responses = findByTitle(attractionService, title, AttractionResponse::new);
+                responses = findByTitle(attractionService, title, AttractionAlllResponse::new);
                 break;
             case "festival":
-                responses = findByTitle(festivalService, title, FestivalResponse::new);
+                responses = findByTitle(festivalService, title, FestivalAllResponse::new);
                 break;
             case "food":
-                responses = findByTitle(foodService, title, FoodResponse::new);
+                responses = findByTitle(foodService, title, FoodAllResponse::new);
                 break;
             case "leports":
-                responses = findByTitle(leportsService, title, LeportsResponse::new);
+                responses = findByTitle(leportsService, title, LeportsAllResponse::new);
                 break;
             case "theme":
-                responses = findByTitle(themeService, title, ThemeResponse::new);
+                responses = findByTitle(themeService, title, ThemeAllResponse::new);
                 break;
             // 다른 카테고리 추가 가능
             default:
