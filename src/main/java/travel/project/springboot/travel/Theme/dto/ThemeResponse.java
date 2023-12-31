@@ -10,9 +10,6 @@ public class ThemeResponse {
     private final double latitude;
     private final double longitude;
     private final String address;
-    //private final String post_code;
-    //private final String out_line;
-    //private final String detail_info;
 
     public ThemeResponse(Theme theme) {
         CommonData commonData = theme.getCommonData();

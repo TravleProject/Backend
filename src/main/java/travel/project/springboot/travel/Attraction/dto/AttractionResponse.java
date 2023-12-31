@@ -10,9 +10,6 @@ public class AttractionResponse {
     private final double latitude;
     private final double longitude;
     private final String address;
-    //private final String post_code;
-    //private final String out_line;
-    //private final String detail_info;
 
     public AttractionResponse(Attraction attraction) {
         CommonData commonData = attraction.getCommonData();

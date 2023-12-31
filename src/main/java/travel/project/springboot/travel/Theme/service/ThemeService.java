@@ -1,27 +1,28 @@
 package travel.project.springboot.travel.Theme.service;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import travel.project.springboot.common.TravelSearch;
+import travel.project.springboot.common.service.BaseService;
+import travel.project.springboot.travel.Festival.domain.entity.Festival;
+import travel.project.springboot.travel.Festival.domain.repository.FestivalRepository;
 import travel.project.springboot.travel.Theme.domain.entity.Theme;
 import travel.project.springboot.travel.Theme.domain.repository.ThemeRepository;
 
 import java.util.List;
 
-@RequiredArgsConstructor
 @Service
-public class ThemeService implements TravelSearch<Theme> {
+public class ThemeService extends BaseService<Theme, Long, ThemeRepository> {
 
-    private final ThemeRepository themeRepository;
+    public ThemeService(ThemeRepository repository) {
+        super(repository);
+    }
 
-    @Override
-    public Theme findById(long id) {
-        return themeRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("not found: " + id));
+    public List<Theme> findByTitle(String title) {
+        return findByTitle(title, null);
     }
 
     @Override
-    public List<Theme> findAll() {
-        return themeRepository.findAll();
+    public Theme findById(Long aLong) {
+        return null;
     }
 }
+
